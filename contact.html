@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demande d'accès — Anatis</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F5F5F5; color: #333; }
+
+    header {
+      background: #1565C0;
+      color: white;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    header a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; display: block; margin-bottom: 12px; }
+    header h1 { font-size: 28px; font-weight: 800; }
+    header p { margin-top: 8px; opacity: 0.85; font-size: 15px; }
+
+    .content {
+      max-width: 640px;
+      margin: 48px auto 60px;
+      padding: 0 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1565C0;
+      margin-bottom: 8px;
+    }
+
+    .card .subtitle {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      border: 2px solid #E3F2FD;
+      border-radius: 12px;
+      background: #F8FBFF;
+    }
+
+    .option .icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+    .option h3 { font-size: 16px; font-weight: 700; color: #1565C0; margin-bottom: 4px; }
+    .option p { font-size: 14px; color: #666; line-height: 1.5; }
+
+    .cta {
+      display: block;
+      background: #1565C0;
+      color: white;
+      text-align: center;
+      padding: 18px 32px;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .cta:hover { background: #0D47A1; transform: translateY(-2px); }
+
+    .cta-sub {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #999;
+    }
+    .cta-sub a { color: #1565C0; text-decoration: none; }
+
+    footer {
+      background: #37474F;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+    }
+    footer a { color: rgba(255,255,255,0.85); text-decoration: none; margin: 0 12px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html">← Retour à l'accueil</a>
+  <h1>📩 Demande d'accès</h1>
+  <p>Obtenez un accès ou un devis pour votre structure</p>
+</header>
+
+<div class="content">
+  <div class="card">
+    <h2>Intéressé par Anatis ?</h2>
+    <p class="subtitle">
+      Anatis s'adapte à votre structure — SAMU, service de réanimation, sapeurs-pompiers ou association de sécurité civile. Contactez-nous pour obtenir une démonstration ou un devis personnalisé.
+    </p>
+
+    <div class="options">
+      <div class="option">
+        <div class="icon">🏥</div>
+        <div>
+          <h3>Demande d'accès</h3>
+          <p>Vous souhaitez déployer Anatis dans votre structure et obtenir des comptes pour votre équipe.</p>
+        </div>
+      </div>
+      <div class="option">
+        <div class="icon">📊</div>
+        <div>
+          <h3>Demande de devis</h3>
+          <p>Vous souhaitez connaître les tarifs adaptés à la taille de votre structure.</p>
+        </div>
+      </div>
+      <div class="option">
+        <div class="icon">💡</div>
+        <div>
+          <h3>Demande de démonstration</h3>
+          <p>Vous souhaitez découvrir l'application avant de vous engager.</p>
+        </div>
+      </div>
+    </div>
+
+    <a class="cta" href="mailto:support@anatis-app.fr?subject=Demande%20d%27acc%C3%A8s%20Anatis&body=Bonjour%2C%0A%0AJe%20souhaite%20en%20savoir%20plus%20sur%20Anatis.%0A%0AType%20de%20demande%20%3A%20(acc%C3%A8s%20%2F%20devis%20%2F%20d%C3%A9monstration)%0ANom%20%2F%20Pr%C3%A9nom%20%3A%20%0AStructure%20%3A%20%0AT%C3%A9l%C3%A9phone%20%3A%20%0A%0AMessage%20%3A%20%0A">
+      Envoyer une demande par email
+    </a>
+
+    <p class="cta-sub">
+      Ou contactez-nous directement : <a href="mailto:support@anatis-app.fr">support@anatis-app.fr</a>
+    </p>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html">Accueil</a>
+  <a href="politique-confidentialite.html">Politique de confidentialité</a>
+  <a href="telechargement.html">Téléchargement</a>
+  <p style="margin-top:12px;">© 2026 Anatis. Tous droits réservés.</p>
+</footer>
+
+</body>
+</html>
