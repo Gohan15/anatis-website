@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Anatis</title>
+        <item>
+            <title>1.0.2</title>
+            <pubDate>Wed, 03 Jun 2026 12:01:20 +0200</pubDate>
+            <link>https://anatis-app.fr/updates/appcast.xml</link>
+            <sparkle:version>4</sparkle:version>
+            <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://anatis-app.fr/updates/Anatis-1.0.2.dmg" length="52694747" type="application/octet-stream" sparkle:edSignature="V83Bhpez+q7/+xK8AMIv1MLgm/5SpzhBtuak5Gjsimd8WlgnwyNlN+kSKVJ5UW6wHk2Ah5H0SGrhqV7ZmQY6Bg=="/>
+        </item>
+    </channel>
+</rss>
