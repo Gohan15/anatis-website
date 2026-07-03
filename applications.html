@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Applications — Anatis</title>
+  <meta name="description" content="Découvrez les applications mobiles Anatis : gestion opérationnelle pour les équipes de secours et géolocalisation de flotte." />
+  <link rel="icon" href="logo.png" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#0D0B1E;--surface:#15122A;--card:#1A1628;--border:#2A2440;
+      --primary:#A78BFA;--secondary:#EC4899;--cyan:#67E8F9;
+      --green:#4ADE80;--yellow:#FBBF24;--blue:#60A5FA;
+    }
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:#fff;min-height:100vh;display:flex;flex-direction:column}
+    a{text-decoration:none;color:inherit}
+
+    /* NAV */
+    nav{height:68px;display:flex;align-items:center;justify-content:space-between;
+      padding:0 64px;background:rgba(13,11,30,.9);backdrop-filter:blur(24px);
+      border-bottom:1px solid rgba(42,36,64,.6);position:sticky;top:0;z-index:100}
+    .nav-logo{display:flex;align-items:center;gap:10px}
+    .nav-logo img{width:32px;height:32px;border-radius:9px;box-shadow:0 4px 12px rgba(109,40,217,.3)}
+    .nav-logo-text{font-size:20px;font-weight:800;
+      background:linear-gradient(90deg,#A78BFA,#EC4899);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .nav-back{font-size:13px;font-weight:500;color:rgba(255,255,255,.4);transition:color .2s}
+    .nav-back:hover{color:#fff}
+
+    /* PAGE HEADER */
+    .page-head{padding:72px 64px 56px;position:relative;overflow:hidden;
+      border-bottom:1px solid var(--border)}
+    .orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+    .o1{width:500px;height:500px;background:rgba(109,40,217,.1);top:-120px;right:-80px}
+    .o2{width:300px;height:300px;background:rgba(236,72,153,.07);bottom:-60px;left:100px}
+    .ph-inner{position:relative;z-index:1;max-width:860px;margin:0 auto}
+    .ph-kicker{font-size:11px;font-weight:700;letter-spacing:2px;
+      color:rgba(167,139,250,.5);margin-bottom:14px}
+    .ph-title{font-size:52px;font-weight:900;letter-spacing:-2.5px;line-height:1.0;margin-bottom:14px}
+    .ph-title span{background:linear-gradient(135deg,#A78BFA,#EC4899);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .ph-sub{font-size:17px;color:rgba(255,255,255,.35);line-height:1.65;max-width:520px}
+
+    /* CONTENT */
+    .content{max-width:860px;margin:0 auto;padding:56px 64px 80px;
+      display:flex;flex-direction:column;gap:28px;flex:1}
+
+    /* APP CARD */
+    .app-card{background:var(--card);border:1px solid var(--border);border-radius:24px;
+      overflow:hidden;transition:border-color .2s}
+    .app-card:hover{border-color:rgba(167,139,250,.15)}
+
+    .app-header{padding:32px 36px 26px;display:flex;align-items:center;gap:22px;
+      border-bottom:1px solid var(--border)}
+    .app-icon{width:66px;height:66px;border-radius:18px;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;font-size:32px}
+    .app-name{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
+    .app-tag{display:inline-flex;align-items:center;gap:6px;
+      padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.5px}
+
+    .app-body{padding:28px 36px 32px}
+    .app-desc{font-size:15px;color:rgba(255,255,255,.42);line-height:1.7;margin-bottom:28px}
+
+    /* FEATURES GRID */
+    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:10px;margin-bottom:28px}
+    .feature{padding:16px 18px;border-radius:13px;
+      background:rgba(255,255,255,.02);border:1px solid rgba(42,36,64,.7);
+      display:flex;gap:13px;align-items:flex-start;transition:border-color .2s}
+    .feature:hover{border-color:rgba(167,139,250,.15)}
+    .f-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+    .f-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px}
+    .f-desc{font-size:12px;color:rgba(255,255,255,.32);line-height:1.5}
+
+    /* BUTTONS */
+    .app-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;
+      padding:13px 26px;border-radius:12px;font-size:14px;font-weight:700;color:#fff;
+      transition:all .2s;border:none}
+    .btn-primary:hover{transform:translateY(-2px)}
+    .btn-outline{display:inline-flex;align-items:center;gap:8px;
+      padding:13px 24px;border-radius:12px;font-size:14px;font-weight:600;
+      background:transparent;border:1px solid var(--border);color:rgba(255,255,255,.5);
+      transition:all .2s}
+    .btn-outline:hover{border-color:rgba(167,139,250,.3);color:#fff}
+
+    /* FOOTER */
+    footer{background:var(--surface);border-top:1px solid var(--border);
+      padding:24px 64px;display:flex;justify-content:space-between;
+      align-items:center;flex-wrap:wrap;gap:14px}
+    .foot-copy{font-size:12px;color:rgba(255,255,255,.18)}
+    .foot-links{display:flex;gap:24px;flex-wrap:wrap}
+    .foot-links a{font-size:13px;color:rgba(255,255,255,.32);transition:color .2s}
+    .foot-links a:hover{color:#fff}
+
+    @media(max-width:700px){
+      nav{padding:0 20px}
+      .page-head{padding:48px 20px 40px}
+      .ph-title{font-size:36px}
+      .content{padding:36px 20px 60px}
+      .app-header{padding:24px 20px;flex-direction:column;align-items:flex-start;gap:14px}
+      .app-body{padding:20px}
+      .features-grid{grid-template-columns:1fr}
+      footer{padding:20px;flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Anatis" />
+    <span class="nav-logo-text">Anatis</span>
+  </a>
+  <a href="index.html" class="nav-back">← Retour à l'accueil</a>
+</nav>
+
+<div class="page-head">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="ph-inner">
+    <div class="ph-kicker">APPLICATIONS MOBILES</div>
+    <h1 class="ph-title">Deux apps,<br><span>un écosystème</span></h1>
+    <p class="ph-sub">Des applications complémentaires pour couvrir l'ensemble de vos besoins opérationnels — iOS &amp; Android.</p>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- ── APP 1 : Anatis ── -->
+  <div class="app-card">
+    <div class="app-header">
+      <div class="app-icon" style="background:linear-gradient(135deg,#6D28D9,#A855F7)">🚑</div>
+      <div>
+        <div class="app-name">Anatis</div>
+        <span class="app-tag" style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.18);color:#A78BFA">
+          Secours · Hôpital · EHPAD
+        </span>
+      </div>
+    </div>
+    <div class="app-body">
+      <p class="app-desc">
+        L'application de gestion opérationnelle pour les équipes de secours et de soins d'urgence.
+        Anatis centralise la vérification du matériel, la formation et la communication interne
+        dans une seule application sécurisée, accessible hors connexion.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature">
+          <div class="f-icon">🚑</div>
+          <div><div class="f-title">Véhicules &amp; Sacs</div><div class="f-desc">Vérifications horodatées, historique complet, alertes de non-conformité.</div></div>
+        </div>
+        <div class="feature">
+          <div class="f-icon">🍼</div>
+          <div><div class="f-title">Couveuses</div><div class="f-desc">Contrôle des équipements néonataux et traçabilité des vérifications.</div></div>
+        </div>
+        <div class="feature">
+          <div class="f-icon">🛒</div>
+          <div><div class="f-title">Chariot d'urgence</div><div class="f-desc">Conformité des chariots de réanimation en services hospitaliers.</div></div>
+        </div>
+        <div class="feature">
+          <div class="f-icon">🆘</div>
+          <div><div class="f-title">Box de déchocage</div><div class="f-desc">Contrôle de l'équipement des box hospitaliers de déchocage.</div></div>
+        </div>
+        <div class="feature">
+          <div class="f-icon">💊</div>
+          <div><div class="f-title">Pharmacie &amp; Stock</div><div class="f-desc">Gestion des médicaments, alertes péremption et inventaire.</div></div>
+        </div>
+        <div class="feature">
+          <div class="f-icon">📋</div>
+          <div><div class="f-title">Formation CESU</div><div class="f-desc">Grilles d'évaluation informatisées, export PDF et Excel.</div></div>
+        </div>
+        <div class="feature">
+          <div class="f-icon">🗺️</div>
+          <div><div class="f-title">Cartographie</div><div class="f-desc">Carroyage de secteur d'intervention sur carte interactive.</div></div>
+        </div>
+        <div class="feature">
+          <div class="f-icon">🤖</div>
+          <div><div class="f-title">Assistant IA</div><div class="f-desc">Aide à la décision opérationnelle en temps réel.</div></div>
+        </div>
+        <div class="feature">
+          <div class="f-icon">💬</div>
+          <div><div class="f-title">Messagerie interne</div><div class="f-desc">Chat sécurisé entre membres de la structure.</div></div>
+        </div>
+        <div class="feature">
+          <div class="f-icon">📚</div>
+          <div><div class="f-title">Référentiels</div><div class="f-desc">Bibliothèque de documents PDF accessibles à toute l'équipe.</div></div>
+        </div>
+      </div>
+
+      <div class="app-btns">
+        <a href="telechargement.html" class="btn-primary"
+          style="background:linear-gradient(135deg,#6D28D9,#A855F7);box-shadow:0 6px 20px rgba(109,40,217,.25)">
+          📱 Télécharger
+        </a>
+        <a href="contact.html" class="btn-outline">Demander un accès</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── APP 2 : Géoloc by Anatis ── -->
+  <div class="app-card">
+    <div class="app-header">
+      <div class="app-icon" style="background:linear-gradient(135deg,#065F46,#059669)">🦆</div>
+      <div>
+        <div class="app-name">Géoloc by Anatis</div>
+        <span class="app-tag" style="background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.18);color:#34D399">
+          Flottes · Entreprises
+        </span>
+      </div>
+    </div>
+    <div class="app-body">
+      <p class="app-desc">
+        L'application de géolocalisation de flotte pour les entreprises et les services opérationnels.
+        Suivez vos véhicules en temps réel, visualisez les trajets et gérez vos équipes sur le terrain,
+        depuis un smartphone ou une tablette.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature">
+          <div class="f-icon">📍</div>
+          <div><div class="f-title">Localisation temps réel</div><div class="f-desc">Position, vitesse, cap et état de l'allumage de chaque véhicule.</div></div>
+        </div>
+        <div class="feature">
+          <div class="f-icon">🗺️</div>
+          <div><div class="f-title">Carte interactive</div><div class="f-desc">Vue d'ensemble de toute la flotte sur une carte intuitive.</div></div>
+        </div>
+        <div class="feature">
+          <div class="f-icon">🚗</div>
+          <div><div class="f-title">Gestion de flotte</div><div class="f-desc">Organisez vos véhicules par groupes et attribuez des accès par équipe.</div></div>
+        </div>
+        <div class="feature">
+          <div class="f-icon">🔐</div>
+          <div><div class="f-title">Accès sécurisé</div><div class="f-desc">Chaque entreprise accède uniquement à ses propres véhicules.</div></div>
+        </div>
+      </div>
+
+      <div class="app-btns">
+        <a href="telechargement.html" class="btn-primary"
+          style="background:linear-gradient(135deg,#065F46,#059669);box-shadow:0 6px 20px rgba(5,150,105,.2)">
+          📱 Télécharger
+        </a>
+        <a href="contact.html" class="btn-outline">Demander un accès</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p class="foot-copy">© 2026 Anatis — Arnaud Morlet. Tous droits réservés.</p>
+  <div class="foot-links">
+    <a href="index.html">Accueil</a>
+    <a href="contact.html">Contact</a>
+    <a href="politique-confidentialite.html">Confidentialité</a>
+    <a href="mentions-legales.html">Mentions légales</a>
+    <a href="mailto:support@anatis-app.fr">support@anatis-app.fr</a>
+  </div>
+</footer>
+
+</body>
+</html>
