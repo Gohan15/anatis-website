@@ -1,11 +1,714 @@
-  <!DOCTYPE html>
-  <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=https://anatis.web.app" />
-    <title>Anatis — Portail</title>
-  </head>
-  <body>
-    <p>Redirection en cours… <a href="https://anatis.web.app">Cliquez ici si la redirection ne fonctionne pas.</a></p>
-  </body>
-  </html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portail Anatis — Tableau de bord</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0D0B1E;--surface:#15122A;--card:#1A1628;--border:#2A2440;
+    --primary:#A78BFA;--secondary:#EC4899;--cyan:#67E8F9;
+    --green:#4ADE80;--yellow:#FBBF24;--red:#EF4444;--blue:#60A5FA;
+  }
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:#fff;
+    display:flex;flex-direction:column;min-height:100vh;font-size:14px}
+  a{text-decoration:none;color:inherit}
+
+  /* ── ACCESS BANNER ───────────────────────────── */
+  .access-banner{background:linear-gradient(90deg,rgba(109,40,217,.15),rgba(236,72,153,.08));
+    border-bottom:1px solid rgba(167,139,250,.12);
+    padding:10px 24px;display:flex;align-items:center;justify-content:center;gap:14px;
+    font-size:13px;color:rgba(255,255,255,.45);text-align:center;flex-wrap:wrap}
+  .access-banner strong{color:rgba(255,255,255,.75)}
+  .btn-access{padding:7px 18px;border-radius:9px;font-size:12px;font-weight:700;
+    background:linear-gradient(135deg,#6D28D9,#A855F7);color:#fff;
+    box-shadow:0 4px 14px rgba(109,40,217,.25);transition:all .2s;border:none;cursor:pointer;
+    white-space:nowrap}
+  .btn-access:hover{box-shadow:0 6px 22px rgba(109,40,217,.4);transform:translateY(-1px)}
+  .banner-back{font-size:12px;color:rgba(167,139,250,.45);transition:color .2s}
+  .banner-back:hover{color:var(--primary)}
+
+  /* ── LAYOUT ──────────────────────────────────── */
+  .layout{display:flex;flex:1}
+
+  /* ── SIDEBAR ─────────────────────────────────── */
+  .sidebar{width:252px;min-height:calc(100vh - 43px);background:var(--surface);
+    border-right:1px solid var(--border);
+    display:flex;flex-direction:column;
+    position:fixed;top:43px;left:0;bottom:0;z-index:100;overflow-y:auto}
+
+  .sb-logo{padding:20px;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;gap:10px}
+  .logo-mark{width:36px;height:36px;border-radius:10px;flex-shrink:0;
+    background:linear-gradient(135deg,#6D28D9,#EC4899);
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;font-weight:900;color:#fff;
+    box-shadow:0 4px 12px rgba(109,40,217,.3)}
+  .logo-name{font-size:18px;font-weight:800;
+    background:linear-gradient(90deg,#A78BFA,#EC4899);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .logo-version{font-size:10px;color:rgba(255,255,255,.2);font-weight:600}
+
+  .sb-samu{padding:14px 20px;border-bottom:1px solid var(--border)}
+  .samu-box{background:var(--card);border:1px solid var(--border);
+    border-radius:11px;padding:11px 14px;cursor:pointer;
+    display:flex;align-items:center;gap:10px;transition:border-color .2s}
+  .samu-box:hover{border-color:rgba(167,139,250,.3)}
+  .samu-avatar{width:30px;height:30px;border-radius:8px;
+    background:linear-gradient(135deg,#1E0A3C,#0F1A3D);
+    border:1px solid rgba(167,139,250,.2);
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;flex-shrink:0}
+  .samu-info{flex:1;min-width:0}
+  .samu-name{font-size:12px;font-weight:700;color:#fff;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .samu-region{font-size:10px;color:rgba(255,255,255,.3)}
+  .samu-chevron{color:rgba(255,255,255,.25);font-size:12px}
+
+  .sb-nav{flex:1;padding:8px 0;scrollbar-width:none}
+  .sb-nav::-webkit-scrollbar{display:none}
+  .nav-section{padding:14px 20px 4px;font-size:10px;font-weight:700;
+    color:rgba(255,255,255,.2);letter-spacing:1.5px}
+  .nav-link{display:flex;align-items:center;gap:11px;
+    padding:9px 20px;cursor:pointer;
+    border-left:2px solid transparent;
+    color:rgba(255,255,255,.42);font-size:13px;font-weight:500;
+    transition:all .15s;text-decoration:none;user-select:none}
+  .nav-link:hover{color:rgba(255,255,255,.8);background:rgba(255,255,255,.02)}
+  .nav-link.active{color:var(--primary);border-left-color:var(--primary);
+    background:rgba(167,139,250,.05)}
+  .nav-icon{font-size:15px;width:18px;text-align:center;flex-shrink:0}
+  .nav-badge{margin-left:auto;font-size:10px;font-weight:700;
+    padding:1px 7px;border-radius:8px;line-height:1.6}
+  .nav-separator{height:1px;background:var(--border);margin:8px 20px}
+
+  .sb-user{padding:14px 20px;border-top:1px solid var(--border)}
+  .user-box{display:flex;align-items:center;gap:10px}
+  .user-ava{width:36px;height:36px;border-radius:50%;
+    background:linear-gradient(135deg,#6D28D9,#EC4899);
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;font-weight:800;flex-shrink:0;
+    box-shadow:0 4px 12px rgba(109,40,217,.25)}
+  .user-name{font-size:13px;font-weight:700;color:#fff}
+  .user-role{font-size:11px;color:rgba(255,255,255,.3);margin-top:1px}
+  .user-settings{margin-left:auto;font-size:16px;color:rgba(255,255,255,.2);cursor:pointer;transition:color .2s}
+  .user-settings:hover{color:rgba(255,255,255,.6)}
+
+  /* ── MAIN ────────────────────────────────────── */
+  .main{flex:1;margin-left:252px;display:flex;flex-direction:column;min-height:calc(100vh - 43px)}
+
+  .topbar{height:62px;background:rgba(13,11,30,.95);backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--border);
+    display:flex;align-items:center;padding:0 28px;gap:16px;
+    position:sticky;top:43px;z-index:50}
+  .tb-title{font-size:16px;font-weight:700;color:#fff}
+  .tb-crumb{font-size:12px;color:rgba(255,255,255,.3);margin-left:4px}
+  .tb-spacer{flex:1}
+  .tb-search{display:flex;align-items:center;gap:8px;
+    background:var(--card);border:1px solid var(--border);
+    border-radius:10px;padding:8px 14px;width:220px;transition:border-color .2s}
+  .tb-search span{font-size:13px;color:rgba(255,255,255,.25)}
+  .tb-search input{background:none;border:none;outline:none;
+    font-size:13px;color:rgba(255,255,255,.6);width:100%;font-family:'Inter',sans-serif}
+  .tb-search input::placeholder{color:rgba(255,255,255,.2)}
+  .live-badge{display:flex;align-items:center;gap:6px;
+    padding:7px 14px;border-radius:8px;
+    background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);
+    font-size:11px;font-weight:700;color:var(--green);white-space:nowrap}
+  .live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);
+    animation:pulse 2s infinite;flex-shrink:0}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+  .tb-icon{width:38px;height:38px;border-radius:10px;
+    background:var(--card);border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:all .2s;position:relative;font-size:16px}
+  .tb-icon:hover{border-color:rgba(167,139,250,.3)}
+  .tb-notif-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;
+    border-radius:50%;background:var(--red);border:1.5px solid var(--bg)}
+  .btn-open-app{padding:8px 18px;border-radius:9px;font-size:12px;font-weight:700;
+    background:linear-gradient(135deg,#6D28D9,#EC4899);color:#fff;
+    border:none;cursor:pointer;transition:all .2s;white-space:nowrap}
+  .btn-open-app:hover{box-shadow:0 4px 14px rgba(109,40,217,.3);transform:translateY(-1px)}
+
+  .content{padding:28px;flex:1;display:flex;flex-direction:column;gap:20px}
+
+  .page-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .ph-left h1{font-size:26px;font-weight:800;letter-spacing:-.5px}
+  .ph-left p{font-size:12px;color:rgba(255,255,255,.3);margin-top:3px}
+  .ph-right{display:flex;gap:8px}
+  .btn-sm{padding:8px 16px;border-radius:9px;font-size:12px;font-weight:700;
+    cursor:pointer;transition:all .2s;border:1px solid}
+  .btn-outline-sm{background:transparent;border-color:var(--border);color:rgba(255,255,255,.5)}
+  .btn-outline-sm:hover{border-color:var(--primary);color:#fff}
+  .btn-solid-sm{border-color:transparent;background:linear-gradient(135deg,#6D28D9,#A855F7);color:#fff;
+    box-shadow:0 4px 14px rgba(109,40,217,.25)}
+
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .kpi{background:var(--card);border:1px solid var(--border);border-radius:16px;
+    padding:20px;position:relative;overflow:hidden;transition:border-color .2s}
+  .kpi:hover{border-color:rgba(167,139,250,.15)}
+  .kpi-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+  .kpi-ico{width:40px;height:40px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;font-size:18px;border:1px solid}
+  .kpi-label{font-size:10px;font-weight:700;letter-spacing:.8px;color:rgba(255,255,255,.3)}
+  .kpi-val{font-size:36px;font-weight:900;letter-spacing:-1.5px;line-height:1}
+  .kpi-foot{display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .kpi-delta{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px}
+  .kpi-sub{font-size:11px;color:rgba(255,255,255,.3)}
+  .kpi-bar{position:absolute;bottom:0;left:0;right:0;height:2px}
+  .kpi-glow{position:absolute;top:-20px;right:-20px;
+    width:100px;height:100px;border-radius:50%;filter:blur(40px);pointer-events:none}
+
+  .charts-row{display:grid;grid-template-columns:1.9fr 1fr;gap:14px}
+  .panel{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+  .panel-head{padding:18px 22px;display:flex;align-items:center;justify-content:space-between;
+    border-bottom:1px solid rgba(42,36,64,.5)}
+  .panel-title{font-size:14px;font-weight:700}
+  .panel-meta{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
+  .panel-tabs{display:flex;gap:4px}
+  .ptab{padding:5px 12px;border-radius:7px;font-size:11px;font-weight:600;
+    cursor:pointer;color:rgba(255,255,255,.3);border:1px solid transparent;transition:all .15s}
+  .ptab.on{background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.2);color:var(--primary)}
+
+  .chart-body{padding:20px 22px 16px}
+  .bars-wrap{display:flex;align-items:flex-end;gap:8px;height:130px}
+  .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .bar-fill{width:100%;border-radius:5px 5px 0 0;position:relative;overflow:hidden;transition:opacity .2s}
+  .bar-fill:hover{opacity:.8}
+  .bar-fill::before{content:'';position:absolute;top:0;left:0;right:0;height:30%;background:rgba(255,255,255,.1)}
+  .bar-day{font-size:9px;color:rgba(255,255,255,.25);font-weight:700;letter-spacing:.5px}
+
+  .donut-body{padding:20px 22px;display:flex;flex-direction:column;gap:16px}
+  .donut-center{display:flex;justify-content:center}
+  .donut-legend{display:flex;flex-direction:column;gap:8px}
+  .dl-item{display:flex;align-items:center;gap:8px}
+  .dl-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+  .dl-name{font-size:12px;color:rgba(255,255,255,.5);flex:1}
+  .dl-pct{font-size:12px;font-weight:700}
+  .dl-bar{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden;max-width:80px}
+  .dl-bar-fill{height:100%;border-radius:2px}
+
+  .bottom-row{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
+
+  .mod-list-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+  .mlp-head{padding:16px 20px;border-bottom:1px solid rgba(42,36,64,.5);
+    display:flex;align-items:center;justify-content:space-between}
+  .mlp-title{font-size:14px;font-weight:700}
+  .mlp-btn{font-size:11px;color:rgba(167,139,250,.6);cursor:pointer;transition:color .2s;font-weight:600}
+  .mlp-btn:hover{color:var(--primary)}
+  .ml-item{padding:12px 20px;display:flex;align-items:center;gap:12px;
+    border-bottom:1px solid rgba(42,36,64,.35);cursor:pointer;transition:background .15s}
+  .ml-item:last-child{border-bottom:none}
+  .ml-item:hover{background:rgba(167,139,250,.03)}
+  .ml-icon{width:34px;height:34px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;border:1px solid}
+  .ml-info{flex:1;min-width:0}
+  .ml-name{font-size:13px;font-weight:600;color:#fff}
+  .ml-meta{font-size:11px;color:rgba(255,255,255,.3);margin-top:1px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .status-chip{padding:3px 10px;border-radius:6px;font-size:10px;font-weight:700}
+  .ml-arrow{color:rgba(255,255,255,.18);font-size:16px;margin-left:4px}
+
+  .alerts-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+  .al-head{padding:16px 20px;border-bottom:1px solid rgba(42,36,64,.5);
+    display:flex;align-items:center;justify-content:space-between}
+  .al-count{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;
+    background:rgba(239,68,68,.1);color:#EF4444;border:1px solid rgba(239,68,68,.2)}
+  .al-item{padding:12px 20px;display:flex;gap:12px;
+    border-bottom:1px solid rgba(42,36,64,.35);transition:background .15s;cursor:pointer}
+  .al-item:last-child{border-bottom:none}
+  .al-item:hover{background:rgba(255,255,255,.02)}
+  .al-dot-wrap{padding-top:3px}
+  .al-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .al-body{flex:1}
+  .al-title{font-size:12px;font-weight:700;line-height:1.3}
+  .al-desc{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px;line-height:1.4}
+  .al-time{font-size:10px;color:rgba(255,255,255,.2);white-space:nowrap;flex-shrink:0;padding-top:2px}
+
+  .activity-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+  .act-head{padding:16px 20px;border-bottom:1px solid rgba(42,36,64,.5)}
+  .act-item{padding:11px 20px;display:flex;align-items:center;gap:10px;
+    border-bottom:1px solid rgba(42,36,64,.3)}
+  .act-item:last-child{border-bottom:none}
+  .act-ico{width:30px;height:30px;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+  .act-text{flex:1;font-size:11px;color:rgba(255,255,255,.5);line-height:1.4}
+  .act-text strong{color:rgba(255,255,255,.8);font-weight:600}
+  .act-time{font-size:10px;color:rgba(255,255,255,.2);white-space:nowrap}
+
+  /* ── DEMO OVERLAY ────────────────────────────── */
+  .demo-overlay{position:fixed;inset:0;top:43px;left:252px;z-index:200;
+    pointer-events:none;
+    background:linear-gradient(to top,rgba(13,11,30,.97) 0%,rgba(13,11,30,.5) 25%,transparent 45%);
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:48px}
+  .demo-cta-box{pointer-events:all;
+    background:rgba(21,18,42,.92);backdrop-filter:blur(24px);
+    border:1px solid rgba(167,139,250,.18);border-radius:20px;
+    padding:30px 40px;text-align:center;max-width:480px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 0 1px rgba(167,139,250,.08)}
+  .demo-tag{font-size:10px;font-weight:700;letter-spacing:1.5px;
+    color:rgba(167,139,250,.5);margin-bottom:12px}
+  .demo-cta-box h3{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+  .demo-cta-box p{font-size:13px;color:rgba(255,255,255,.38);margin-bottom:24px;line-height:1.6}
+  .demo-cta-box .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .btn-portal{padding:12px 28px;border-radius:11px;font-size:14px;font-weight:700;
+    background:linear-gradient(135deg,#6D28D9,#A855F7,#EC4899);color:#fff;
+    box-shadow:0 6px 22px rgba(109,40,217,.3);cursor:pointer;border:none;transition:all .2s}
+  .btn-portal:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(109,40,217,.4)}
+  .btn-portal-outline{padding:12px 24px;border-radius:11px;font-size:14px;font-weight:600;
+    border:1px solid rgba(42,36,64,.9);color:rgba(255,255,255,.55);
+    background:rgba(26,22,40,.5);cursor:pointer;transition:all .2s}
+  .btn-portal-outline:hover{border-color:rgba(167,139,250,.3);color:#fff}
+</style>
+</head>
+<body>
+
+<!-- ACCESS BANNER -->
+<div class="access-banner">
+  <a href="https://anatis-app.fr" class="banner-back">← anatis-app.fr</a>
+  <span>Aperçu du portail web Anatis — <strong>Accès réel réservé aux membres de votre structure.</strong></span>
+  <a href="https://anatis.web.app" target="_blank" rel="noopener" class="btn-access">Ouvrir le portail →</a>
+</div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <a href="https://anatis-app.fr" class="sb-logo">
+    <div class="logo-mark">A</div>
+    <div>
+      <div class="logo-name">Anatis</div>
+      <div class="logo-version">PORTAIL WEB</div>
+    </div>
+  </a>
+
+  <div class="sb-samu">
+    <div class="samu-box">
+      <div class="samu-avatar">🏥</div>
+      <div class="samu-info">
+        <div class="samu-name">SAMU 75 — Paris</div>
+        <div class="samu-region">Île-de-France · Administrateur</div>
+      </div>
+      <div class="samu-chevron">⌄</div>
+    </div>
+  </div>
+
+  <nav class="sb-nav">
+    <div class="nav-section">PRINCIPAL</div>
+    <a class="nav-link active" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">📊</span> Dashboard
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">🚑</span> Vecteurs
+      <span class="nav-badge" style="background:rgba(96,165,250,.1);color:#60A5FA;border:1px solid rgba(96,165,250,.2)">8</span>
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">🎒</span> Sacs
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">🍼</span> Couveuse
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">🛒</span> Chariot d'urgence
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">🆘</span> Box déchocage
+    </a>
+
+    <div class="nav-separator"></div>
+    <div class="nav-section">LOGISTIQUE</div>
+
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">🗺️</span> Cartographie
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">📍</span> Géolocalisation
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">📗</span> Cahier Vert
+      <span class="nav-badge" style="background:rgba(251,191,36,.08);color:#FBBF24;border:1px solid rgba(251,191,36,.2)">2</span>
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">💊</span> Pharmacie
+      <span class="nav-badge" style="background:rgba(239,68,68,.08);color:#EF4444;border:1px solid rgba(239,68,68,.2)">3</span>
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">🏥</span> BioMed
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">🚨</span> PSM
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">📦</span> Stock
+    </a>
+
+    <div class="nav-separator"></div>
+    <div class="nav-section">ORGANISATION</div>
+
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">🤝</span> Association
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">🎓</span> Formation
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">🔧</span> Outils médicaux
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">📄</span> CESU
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">💬</span> Messages
+      <span class="nav-badge" style="background:rgba(167,139,250,.1);color:#A78BFA;border:1px solid rgba(167,139,250,.2)">5</span>
+    </a>
+
+    <div class="nav-separator"></div>
+    <div class="nav-section">ADMINISTRATION</div>
+
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">👥</span> Utilisateurs
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">⚙️</span> Configuration SAMU
+    </a>
+    <a class="nav-link" href="https://anatis.web.app" target="_blank">
+      <span class="nav-icon">🔔</span> Notifications
+    </a>
+  </nav>
+
+  <div class="sb-user">
+    <div class="user-box">
+      <div class="user-ava">AM</div>
+      <div style="flex:1;min-width:0">
+        <div class="user-name">Administrateur</div>
+        <div class="user-role">Portail Anatis</div>
+      </div>
+      <div class="user-settings">⚙</div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="topbar">
+    <div>
+      <span class="tb-title">Dashboard</span>
+      <span class="tb-crumb">/ SAMU 75</span>
+    </div>
+    <div class="tb-spacer"></div>
+    <div class="tb-search">
+      <span>🔍</span>
+      <input type="text" placeholder="Rechercher un module, vecteur…" readonly>
+    </div>
+    <div class="live-badge">
+      <div class="live-dot"></div>
+      TEMPS RÉEL
+    </div>
+    <div class="tb-icon">
+      🔔
+      <div class="tb-notif-dot"></div>
+    </div>
+    <a href="https://anatis.web.app" target="_blank" rel="noopener" class="btn-open-app">
+      Ouvrir le portail →
+    </a>
+  </div>
+
+  <div class="content">
+
+    <div class="page-header">
+      <div class="ph-left">
+        <h1>Tableau de bord</h1>
+        <p>Aperçu du portail Anatis · Connexion requise pour accéder à vos données</p>
+      </div>
+      <div class="ph-right">
+        <button class="btn-sm btn-outline-sm">📥 Exporter</button>
+        <button class="btn-sm btn-solid-sm">+ Nouvelle vérification</button>
+      </div>
+    </div>
+
+    <!-- KPI -->
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-glow" style="background:rgba(167,139,250,.2)"></div>
+        <div class="kpi-top">
+          <div class="kpi-ico" style="background:rgba(167,139,250,.07);border-color:rgba(167,139,250,.15)">📊</div>
+          <div class="kpi-label">MODULES ACTIFS</div>
+        </div>
+        <div class="kpi-val" style="color:var(--primary)">17</div>
+        <div class="kpi-foot">
+          <span class="kpi-delta" style="background:rgba(74,222,128,.08);color:#4ADE80;border:1px solid rgba(74,222,128,.15)">↑ +2 ce mois</span>
+          <span class="kpi-sub">tous opérationnels</span>
+        </div>
+        <div class="kpi-bar" style="background:linear-gradient(90deg,var(--primary),transparent)"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-glow" style="background:rgba(96,165,250,.2)"></div>
+        <div class="kpi-top">
+          <div class="kpi-ico" style="background:rgba(96,165,250,.07);border-color:rgba(96,165,250,.15)">🚑</div>
+          <div class="kpi-label">VECTEURS EN SERVICE</div>
+        </div>
+        <div class="kpi-val" style="color:var(--blue)">8</div>
+        <div class="kpi-foot">
+          <span class="kpi-delta" style="background:rgba(96,165,250,.08);color:#60A5FA;border:1px solid rgba(96,165,250,.15)">● 3 en intervention</span>
+        </div>
+        <div class="kpi-bar" style="background:linear-gradient(90deg,var(--blue),transparent)"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-glow" style="background:rgba(239,68,68,.15)"></div>
+        <div class="kpi-top">
+          <div class="kpi-ico" style="background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.15)">⚠️</div>
+          <div class="kpi-label">ALERTES ACTIVES</div>
+        </div>
+        <div class="kpi-val" style="color:var(--red)">3</div>
+        <div class="kpi-foot">
+          <span class="kpi-delta" style="background:rgba(239,68,68,.08);color:#EF4444;border:1px solid rgba(239,68,68,.15)">2 urgentes</span>
+          <span class="kpi-sub">1 en attente</span>
+        </div>
+        <div class="kpi-bar" style="background:linear-gradient(90deg,var(--red),transparent)"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-glow" style="background:rgba(74,222,128,.15)"></div>
+        <div class="kpi-top">
+          <div class="kpi-ico" style="background:rgba(74,222,128,.07);border-color:rgba(74,222,128,.15)">✅</div>
+          <div class="kpi-label">TAUX DE CONFORMITÉ</div>
+        </div>
+        <div class="kpi-val" style="color:var(--green)">94%</div>
+        <div class="kpi-foot">
+          <span class="kpi-delta" style="background:rgba(74,222,128,.08);color:#4ADE80;border:1px solid rgba(74,222,128,.15)">↑ +3% vs semaine</span>
+        </div>
+        <div class="kpi-bar" style="background:linear-gradient(90deg,var(--green),transparent)"></div>
+      </div>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="charts-row">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Vérifications matérielles</div>
+            <div class="panel-meta">Nombre de contrôles effectués par jour</div>
+          </div>
+          <div class="panel-tabs">
+            <div class="ptab on">7j</div>
+            <div class="ptab">30j</div>
+            <div class="ptab">90j</div>
+          </div>
+        </div>
+        <div class="chart-body">
+          <div class="bars-wrap">
+            <div class="bar-col">
+              <div class="bar-fill" style="height:65%;background:linear-gradient(180deg,rgba(167,139,250,.75),rgba(167,139,250,.1))"></div>
+              <span class="bar-day">LUN</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-fill" style="height:42%;background:linear-gradient(180deg,rgba(96,165,250,.7),rgba(96,165,250,.1))"></div>
+              <span class="bar-day">MAR</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-fill" style="height:88%;background:linear-gradient(180deg,rgba(167,139,250,.9),rgba(167,139,250,.15))"></div>
+              <span class="bar-day">MER</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-fill" style="height:55%;background:linear-gradient(180deg,rgba(103,232,249,.7),rgba(103,232,249,.1))"></div>
+              <span class="bar-day">JEU</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-fill" style="height:74%;background:linear-gradient(180deg,rgba(167,139,250,.8),rgba(167,139,250,.12))"></div>
+              <span class="bar-day">VEN</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-fill" style="height:48%;background:linear-gradient(180deg,rgba(96,165,250,.65),rgba(96,165,250,.08))"></div>
+              <span class="bar-day">SAM</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar-fill" style="height:82%;background:linear-gradient(180deg,rgba(167,139,250,.85),rgba(167,139,250,.12))"></div>
+              <span class="bar-day">DIM</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);flex-wrap:wrap">
+            <span style="font-size:11px;color:rgba(255,255,255,.3)">Moy. hebdo : <strong style="color:#A78BFA">23 contrôles/jour</strong></span>
+            <span style="font-size:11px;color:rgba(255,255,255,.3)">Record : <strong style="color:#4ADE80">31 (mercredi)</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">État des équipements</div>
+            <div class="panel-meta">Toutes catégories · Temps réel</div>
+          </div>
+        </div>
+        <div class="donut-body">
+          <div class="donut-center">
+            <svg width="120" height="120" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#2A2440" stroke-width="15"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#4ADE80" stroke-width="15"
+                stroke-dasharray="183 106" stroke-dashoffset="30" stroke-linecap="round"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#FBBF24" stroke-width="15"
+                stroke-dasharray="29 260" stroke-dashoffset="-153" stroke-linecap="round"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#EF4444" stroke-width="15"
+                stroke-dasharray="14 275" stroke-dashoffset="-182" stroke-linecap="round"/>
+              <text x="60" y="55" text-anchor="middle" fill="#fff"
+                font-size="20" font-weight="900" font-family="Inter">94%</text>
+              <text x="60" y="71" text-anchor="middle" fill="rgba(255,255,255,.3)"
+                font-size="9" font-weight="700" font-family="Inter" letter-spacing="0.5">CONFORMITÉ</text>
+            </svg>
+          </div>
+          <div class="donut-legend">
+            <div class="dl-item">
+              <div class="dl-dot" style="background:#4ADE80"></div>
+              <span class="dl-name">Opérationnel</span>
+              <div class="dl-bar"><div class="dl-bar-fill" style="width:94%;background:#4ADE80"></div></div>
+              <span class="dl-pct" style="color:#4ADE80">94%</span>
+            </div>
+            <div class="dl-item">
+              <div class="dl-dot" style="background:#FBBF24"></div>
+              <span class="dl-name">Attention</span>
+              <div class="dl-bar"><div class="dl-bar-fill" style="width:4%;background:#FBBF24"></div></div>
+              <span class="dl-pct" style="color:#FBBF24">4%</span>
+            </div>
+            <div class="dl-item">
+              <div class="dl-dot" style="background:#EF4444"></div>
+              <span class="dl-name">Critique</span>
+              <div class="dl-bar"><div class="dl-bar-fill" style="width:2%;background:#EF4444"></div></div>
+              <span class="dl-pct" style="color:#EF4444">2%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div class="bottom-row">
+      <div class="mod-list-panel">
+        <div class="mlp-head">
+          <span class="mlp-title">Modules</span>
+          <a href="https://anatis.web.app" target="_blank" class="mlp-btn">Voir tout →</a>
+        </div>
+        <div class="ml-item">
+          <div class="ml-icon" style="background:rgba(96,165,250,.07);border-color:rgba(96,165,250,.15)">🚑</div>
+          <div class="ml-info"><div class="ml-name">Vecteurs</div><div class="ml-meta">8 véhicules · Vérifié il y a 45 min</div></div>
+          <span class="status-chip" style="background:rgba(74,222,128,.07);color:#4ADE80;border:1px solid rgba(74,222,128,.15)">✓ OK</span>
+          <span class="ml-arrow">›</span>
+        </div>
+        <div class="ml-item">
+          <div class="ml-icon" style="background:rgba(103,232,249,.07);border-color:rgba(103,232,249,.15)">🎒</div>
+          <div class="ml-info"><div class="ml-name">Sacs</div><div class="ml-meta">12 sacs · Vérification complète</div></div>
+          <span class="status-chip" style="background:rgba(74,222,128,.07);color:#4ADE80;border:1px solid rgba(74,222,128,.15)">✓ OK</span>
+          <span class="ml-arrow">›</span>
+        </div>
+        <div class="ml-item">
+          <div class="ml-icon" style="background:rgba(251,191,36,.07);border-color:rgba(251,191,36,.15)">💊</div>
+          <div class="ml-info"><div class="ml-name">Pharmacie</div><div class="ml-meta">3 alertes péremption · Urgent</div></div>
+          <span class="status-chip" style="background:rgba(239,68,68,.07);color:#EF4444;border:1px solid rgba(239,68,68,.15)">⚠ Urgent</span>
+          <span class="ml-arrow">›</span>
+        </div>
+        <div class="ml-item">
+          <div class="ml-icon" style="background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.15)">🏥</div>
+          <div class="ml-info"><div class="ml-name">BioMed</div><div class="ml-meta">Inventaire conforme · 124 appareils</div></div>
+          <span class="status-chip" style="background:rgba(74,222,128,.07);color:#4ADE80;border:1px solid rgba(74,222,128,.15)">✓ OK</span>
+          <span class="ml-arrow">›</span>
+        </div>
+        <div class="ml-item">
+          <div class="ml-icon" style="background:rgba(251,191,36,.07);border-color:rgba(251,191,36,.15)">📦</div>
+          <div class="ml-info"><div class="ml-name">Stock</div><div class="ml-meta">847 références · 2 lots critiques</div></div>
+          <span class="status-chip" style="background:rgba(251,191,36,.07);color:#FBBF24;border:1px solid rgba(251,191,36,.15)">→ Attention</span>
+          <span class="ml-arrow">›</span>
+        </div>
+      </div>
+
+      <div class="alerts-panel">
+        <div class="al-head">
+          <span style="font-size:14px;font-weight:700">Alertes</span>
+          <span class="al-count">3 actives</span>
+        </div>
+        <div class="al-item">
+          <div class="al-dot-wrap"><div class="al-dot" style="background:#EF4444;box-shadow:0 0 6px #EF4444"></div></div>
+          <div class="al-body">
+            <div class="al-title" style="color:#EF4444">Péremption imminente</div>
+            <div class="al-desc">Morphine 10mg — Lot B2024 expire dans 7 jours</div>
+          </div>
+          <div class="al-time">2 min</div>
+        </div>
+        <div class="al-item">
+          <div class="al-dot-wrap"><div class="al-dot" style="background:#EF4444;box-shadow:0 0 6px #EF4444"></div></div>
+          <div class="al-body">
+            <div class="al-title" style="color:#EF4444">Stock critique</div>
+            <div class="al-desc">Adrénaline 1mg — Quantité sous le seuil minimum</div>
+          </div>
+          <div class="al-time">18 min</div>
+        </div>
+        <div class="al-item">
+          <div class="al-dot-wrap"><div class="al-dot" style="background:#FBBF24"></div></div>
+          <div class="al-body">
+            <div class="al-title" style="color:#FBBF24">Vérification en retard</div>
+            <div class="al-desc">VSAV Charlie 3 — Dépasse de 2h le délai</div>
+          </div>
+          <div class="al-time">1h</div>
+        </div>
+        <div class="al-item">
+          <div class="al-dot-wrap"><div class="al-dot" style="background:#60A5FA"></div></div>
+          <div class="al-body">
+            <div class="al-title" style="color:#60A5FA">Rapport cahier vert</div>
+            <div class="al-desc">2 nouveaux rapports à valider</div>
+          </div>
+          <div class="al-time">2h</div>
+        </div>
+      </div>
+
+      <div class="activity-panel">
+        <div class="act-head">
+          <span style="font-size:14px;font-weight:700">Activité récente</span>
+        </div>
+        <div class="act-item">
+          <div class="act-ico" style="background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.15)">✅</div>
+          <div class="act-text"><strong>Dr. Martin</strong> a validé la vérification de <strong>VSAV Alpha 1</strong></div>
+          <div class="act-time">5 min</div>
+        </div>
+        <div class="act-item">
+          <div class="act-ico" style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.15)">📋</div>
+          <div class="act-text"><strong>Mme. Dupont</strong> a créé une <strong>fiche bilan médicalisé</strong></div>
+          <div class="act-time">22 min</div>
+        </div>
+        <div class="act-item">
+          <div class="act-ico" style="background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.15)">🚑</div>
+          <div class="act-text">Mise à jour du matériel de <strong>VLM Bravo 2</strong> enregistrée</div>
+          <div class="act-time">1h</div>
+        </div>
+        <div class="act-item">
+          <div class="act-ico" style="background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.15)">📦</div>
+          <div class="act-text">Commande de <strong>réapprovisionnement #48</strong> créée</div>
+          <div class="act-time">2h</div>
+        </div>
+        <div class="act-item">
+          <div class="act-ico" style="background:rgba(103,232,249,.08);border:1px solid rgba(103,232,249,.15)">🎓</div>
+          <div class="act-text"><strong>Session CESU</strong> du 28 juin validée (12 participants)</div>
+          <div class="act-time">3h</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+</div>
+
+<!-- DEMO OVERLAY CTA -->
+<div class="demo-overlay">
+  <div class="demo-cta-box">
+    <div class="demo-tag">PORTAIL WEB ANATIS</div>
+    <h3>Accédez à votre espace</h3>
+    <p>Connectez-vous avec votre compte Anatis pour gérer vos équipements, consulter vos alertes et piloter votre SAMU en temps réel.</p>
+    <div class="btns">
+      <a href="https://anatis.web.app" target="_blank" rel="noopener" class="btn-portal">Accéder au portail →</a>
+      <a href="https://anatis-app.fr/contact.html" class="btn-portal-outline">Demander un accès</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
