@@ -9,20 +9,20 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     *{margin:0;padding:0;box-sizing:border-box}
     :root{
-      --bg:#0D0B1E;--surface:#15122A;--card:#1A1628;--border:#2A2440;
-      --primary:#A78BFA;--secondary:#EC4899;
+      --bg:#00010F;--surface:#010520;--card:#070D30;--border:#0C1A5A;
+      --primary:#0401E6;--secondary:#3D52FF;
     }
     body{font-family:'Inter',sans-serif;background:var(--bg);color:#fff;min-height:100vh;display:flex;flex-direction:column}
     a{text-decoration:none;color:inherit}
 
     /* NAV */
     nav{height:68px;display:flex;align-items:center;justify-content:space-between;
-      padding:0 64px;background:rgba(13,11,30,.9);backdrop-filter:blur(24px);
+      padding:0 64px;background:rgba(0,1,15,.9);backdrop-filter:blur(24px);
       border-bottom:1px solid rgba(42,36,64,.6);position:sticky;top:0;z-index:100}
     .nav-logo{display:flex;align-items:center;gap:10px}
-    .nav-logo img{width:32px;height:32px;border-radius:9px;box-shadow:0 4px 12px rgba(109,40,217,.3)}
+    .nav-logo img{width:32px;height:32px;border-radius:9px;box-shadow:0 4px 12px rgba(4,1,230,.3)}
     .nav-logo-text{font-size:20px;font-weight:800;
-      background:linear-gradient(90deg,#A78BFA,#EC4899);
+      background:linear-gradient(90deg,#0401E6,#3D52FF);
       -webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .nav-back{font-size:13px;font-weight:500;color:rgba(255,255,255,.4);
       display:flex;align-items:center;gap:6px;transition:color .2s}
@@ -31,17 +31,17 @@
     /* PAGE */
     .page{flex:1;padding:72px 24px 80px;position:relative;overflow:hidden}
     .orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
-    .o1{width:500px;height:500px;background:rgba(109,40,217,.1);top:-80px;right:-80px}
-    .o2{width:350px;height:350px;background:rgba(236,72,153,.07);bottom:-40px;left:-40px}
+    .o1{width:500px;height:500px;background:rgba(4,1,230,.1);top:-80px;right:-80px}
+    .o2{width:350px;height:350px;background:rgba(4,1,230,.07);bottom:-40px;left:-40px}
 
     .page-inner{position:relative;z-index:1;max-width:600px;margin:0 auto}
 
     /* HEADER */
     .page-header{margin-bottom:48px}
     .page-kicker{font-size:11px;font-weight:700;letter-spacing:2px;
-      color:rgba(167,139,250,.5);margin-bottom:12px}
+      color:rgba(4,1,230,.5);margin-bottom:12px}
     .page-title{font-size:44px;font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:12px}
-    .page-title span{background:linear-gradient(135deg,#A78BFA,#EC4899);
+    .page-title span{background:linear-gradient(135deg,#0401E6,#3D52FF);
       -webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .page-sub{font-size:16px;color:rgba(255,255,255,.38);line-height:1.65;max-width:480px}
 
@@ -51,7 +51,7 @@
       padding:22px 24px;border-radius:16px;
       background:var(--card);border:1px solid var(--border);
       position:relative;overflow:hidden;transition:border-color .2s}
-    .option:hover{border-color:rgba(167,139,250,.2)}
+    .option:hover{border-color:rgba(4,1,230,.2)}
     .option-bar{position:absolute;left:0;top:0;bottom:0;width:3px}
     .opt-icon{font-size:26px;flex-shrink:0;margin-top:2px}
     .opt-title{font-size:15px;font-weight:700;margin-bottom:4px}
@@ -61,12 +61,12 @@
     .cta-wrap{display:flex;flex-direction:column;gap:14px}
     .btn-email{display:flex;align-items:center;justify-content:center;gap:10px;
       padding:18px 32px;border-radius:14px;font-size:16px;font-weight:700;color:#fff;
-      background:linear-gradient(135deg,#6D28D9,#A855F7,#EC4899);
-      box-shadow:0 8px 28px rgba(109,40,217,.3);transition:all .2s}
-    .btn-email:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(109,40,217,.4)}
+      background:linear-gradient(135deg,#0200A8,#2B3EFF,#3D52FF);
+      box-shadow:0 8px 28px rgba(4,1,230,.3);transition:all .2s}
+    .btn-email:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(4,1,230,.4)}
     .btn-email svg{flex-shrink:0}
     .cta-note{text-align:center;font-size:13px;color:rgba(255,255,255,.22)}
-    .cta-note a{color:rgba(167,139,250,.5);transition:color .2s}
+    .cta-note a{color:rgba(4,1,230,.5);transition:color .2s}
     .cta-note a:hover{color:var(--primary)}
 
     /* DIVIDER */
@@ -76,12 +76,12 @@
     .direct{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .dc{background:var(--card);border:1px solid var(--border);border-radius:14px;
       padding:20px 22px;transition:border-color .2s}
-    .dc:hover{border-color:rgba(167,139,250,.2)}
+    .dc:hover{border-color:rgba(4,1,230,.2)}
     .dc-icon{font-size:22px;margin-bottom:10px}
     .dc-title{font-size:12px;font-weight:700;color:rgba(255,255,255,.3);
       letter-spacing:.8px;margin-bottom:4px}
     .dc-val{font-size:14px;font-weight:600;color:rgba(255,255,255,.75)}
-    .dc-val a{color:rgba(167,139,250,.7);transition:color .2s}
+    .dc-val a{color:rgba(4,1,230,.7);transition:color .2s}
     .dc-val a:hover{color:var(--primary)}
 
     /* FOOTER */
@@ -125,7 +125,7 @@
 
     <div class="options">
       <div class="option">
-        <div class="option-bar" style="background:linear-gradient(180deg,#A78BFA,#EC4899)"></div>
+        <div class="option-bar" style="background:linear-gradient(180deg,#0401E6,#3D52FF)"></div>
         <div class="opt-icon">🏥</div>
         <div>
           <div class="opt-title">Demande d'accès</div>
