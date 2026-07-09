@@ -83,8 +83,13 @@
 
     /* Store badges */
     .hero-stores{display:flex;gap:14px;justify-content:center;margin-top:28px;align-items:center}
-    .store-badge{display:block;height:44px;transition:transform .2s,filter .2s}
-    .store-badge:hover{transform:translateY(-2px);filter:brightness(1.1)}
+    .store-wrap{position:relative;display:inline-block}
+    .store-badge{display:block;height:44px;transition:transform .2s,filter .2s;opacity:.5;cursor:not-allowed}
+    .store-soon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      background:rgba(26,43,107,.75);border-radius:8px;opacity:0;transition:opacity .2s;pointer-events:none}
+    .store-soon span{font-size:10px;font-weight:700;color:#EDFF21;letter-spacing:.8px;white-space:nowrap}
+    .store-wrap:hover .store-soon{opacity:1}
+    .store-wrap:hover .store-badge{filter:brightness(.6)}
 
     /* ── BAND STATS ──────────────────────────── */
     .band{border-top:1px solid var(--border);border-bottom:1px solid var(--border);
@@ -260,12 +265,14 @@
       <a href="contact.html" class="btn-hero-outline">Demander une démo →</a>
     </div>
     <div class="hero-stores">
-      <a href="telechargement.html">
+      <div class="store-wrap">
         <img class="store-badge" src="badges/appstore.svg" alt="Télécharger sur l'App Store" />
-      </a>
-      <a href="telechargement.html">
+        <div class="store-soon"><span>BIENTÔT DISPONIBLE</span></div>
+      </div>
+      <div class="store-wrap">
         <img class="store-badge" src="badges/googleplay.png" alt="Disponible sur Google Play" />
-      </a>
+        <div class="store-soon"><span>BIENTÔT DISPONIBLE</span></div>
+      </div>
     </div>
   </div>
 </section>
