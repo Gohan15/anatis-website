@@ -207,29 +207,50 @@
     .fchip{padding:3px 11px;border:1px solid var(--border);border-radius:100px;
       font-size:10px;font-weight:600;color:rgba(255,255,255,.18)}
 
-    /* Mobile responsive minimal */
+    /* Tooltip bientôt disponible sur les boutons téléchargement */
+    .btn-soon-wrap{position:relative;display:inline-block}
+    .btn-soon-tip{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);
+      background:#EDFF21;color:#000;font-size:11px;font-weight:700;letter-spacing:.8px;
+      padding:6px 14px;border-radius:8px;white-space:nowrap;pointer-events:none;
+      opacity:0;transition:opacity .2s;z-index:100}
+    .btn-soon-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+      border:5px solid transparent;border-top-color:#EDFF21}
+    .btn-soon-wrap.show-tip .btn-soon-tip{opacity:1}
+
+    /* Mobile responsive */
     @media(max-width:768px){
       nav{padding:0 20px}
       .nav-links{display:none}
-      .hero{padding:120px 24px 60px}
-      h1{font-size:42px;letter-spacing:-1.5px}
-      .hero-sub{font-size:16px}
+      .hero{padding:100px 20px 50px;text-align:center}
+      h1{font-size:38px;letter-spacing:-1px}
+      .hero-sub{font-size:15px;margin-bottom:32px}
+      .hero-btns{flex-direction:column;align-items:stretch;gap:10px}
+      .btn-hero-primary,.btn-hero-outline{width:100%;text-align:center;padding:14px 20px}
+      .btn-soon-wrap{width:100%}
+      .hero-stores{gap:10px}
+      .store-badge{height:38px}
       .band-inner{grid-template-columns:repeat(2,1fr)}
-      .band-item{border-right:none;border-bottom:1px solid var(--border);padding:20px}
+      .band-item{border-right:none;border-bottom:1px solid var(--border);padding:18px 12px}
       .band-item:nth-child(odd){border-right:1px solid var(--border)}
-      .section{padding:60px 24px}
-      .sec-title{font-size:32px}
+      .band-num{font-size:28px;letter-spacing:-0.5px}
+      .section{padding:60px 20px}
+      .sec-title{font-size:30px}
+      .mods-inner{padding:60px 20px}
       .feat-grid{grid-template-columns:1fr}
       .fc.wide{grid-column:span 1}
-      .mods-grid{grid-template-columns:repeat(4,1fr)}
+      .mods-grid{grid-template-columns:repeat(4,1fr);gap:8px}
+      .mod{padding:12px 6px 10px;border-radius:12px}
+      .mod-icon{width:32px;height:32px}
+      .mod-name{font-size:9px}
       .steps{grid-template-columns:1fr 1fr;gap:24px}
       .steps::before{display:none}
       .sec-grid{grid-template-columns:1fr}
       .foot-top{grid-template-columns:1fr}
-      footer{padding:40px 24px 24px}
+      footer{padding:40px 20px 24px}
       .foot-bottom{flex-direction:column;align-items:flex-start}
-      .cta-inner{padding:70px 24px}
-      .cta-inner h2{font-size:36px}
+      .cta-inner{padding:60px 20px}
+      .cta-inner h2{font-size:30px}
+      .cta-inner p{font-size:15px}
     }
   </style>
 </head>
@@ -268,9 +289,12 @@
       SOLUTION MULTI-STRUCTURES · SECOURS &amp; SOINS
     </div>
     <h1>La gestion terrain<br><span class="h1-grad">enfin unifiée</span></h1>
-    <p class="hero-sub">Anatis centralise 17 modules opérationnels dans une seule application — disponible pour les ambulances privées, SMUR, SAMU, pompiers, associations agréées sécurité civile, hôpitaux et maisons de retraite. iOS &amp; Android.</p>
+    <p class="hero-sub">13 modules opérationnels dans une seule application — pour les structures de secours et de soins d'urgence. iOS &amp; Android.</p>
     <div class="hero-btns">
-      <a href="telechargement.html" class="btn-hero-primary">Télécharger l'application</a>
+      <div class="btn-soon-wrap">
+        <div class="btn-soon-tip">BIENTÔT DISPONIBLE</div>
+        <button onclick="toggleSoon(this.parentElement)" class="btn-hero-primary">Télécharger l'application</button>
+      </div>
       <a href="contact.html" class="btn-hero-outline">Demander une démo →</a>
     </div>
     <div class="hero-stores">
@@ -433,7 +457,10 @@
     <p>Déploiement rapide · Formation incluse · Support dédié</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
       <a href="contact.html" class="btn-hero-primary">Demander un accès ou un devis</a>
-      <a href="telechargement.html" class="btn-hero-outline">Télécharger l'app →</a>
+      <div class="btn-soon-wrap">
+        <div class="btn-soon-tip">BIENTÔT DISPONIBLE</div>
+        <button onclick="toggleSoon(this.parentElement)" class="btn-hero-outline">Télécharger l'app →</button>
+      </div>
     </div>
     <p class="contact-note">Questions ? <a href="mailto:support@anatis-app.fr">support@anatis-app.fr</a></p>
   </div>
@@ -481,5 +508,16 @@
   </div>
 </footer>
 
+<script>
+function toggleSoon(wrap) {
+  wrap.classList.add('show-tip');
+  setTimeout(function(){ wrap.classList.remove('show-tip'); }, 2000);
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.btn-soon-wrap')) {
+    document.querySelectorAll('.btn-soon-wrap').forEach(function(w){ w.classList.remove('show-tip'); });
+  }
+});
+</script>
 </body>
 </html>
