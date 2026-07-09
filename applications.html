@@ -4,17 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nos Applications — Anatis</title>
-  <meta name="description" content="Découvrez l'application mobile Anatis : gestion opérationnelle pour les équipes de secours, de soins et de sécurité civile." />
   <link rel="icon" href="logo.png" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     *{margin:0;padding:0;box-sizing:border-box}
-    :root{
-      --bg:#1A2B6B;--surface:#1E3275;--card:rgba(255,255,255,0.07);--border:rgba(255,255,255,0.12);
-      --primary:#EDFF21;--secondary:#4B9F42;--cyan:#67E8F9;
-      --green:#4ADE80;--yellow:#FBBF24;--red:#EF4444;--blue:#60A5FA;
-    }
-    html{scroll-behavior:smooth}
     body{font-family:'Inter',sans-serif;background:#1A2B6B;color:#fff;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
     a{text-decoration:none;color:inherit}
 
@@ -27,75 +20,46 @@
     .nav-logo-text{font-size:20px;font-weight:800;color:#fff}
     .nav-links{display:flex;gap:32px}
     .nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,.6);transition:color .2s}
-    .nav-links a:hover{color:#fff}
+    .nav-links a:hover,.nav-links a.active{color:#fff}
     .nav-actions{display:flex;align-items:center;gap:10px}
-    .btn-ghost{padding:8px 20px;border:1px solid var(--border);border-radius:9px;
-      font-size:13px;font-weight:600;color:rgba(255,255,255,.55);background:transparent;cursor:pointer;transition:all .2s}
-    .btn-ghost:hover{border-color:var(--primary);color:#fff}
-    .btn-cta{padding:8px 20px;border:none;border-radius:9px;font-size:13px;font-weight:700;color:#000;
-      cursor:pointer;background:#EDFF21;box-shadow:0 4px 14px rgba(237,255,33,.35);transition:all .2s}
-    .btn-cta:hover{box-shadow:0 6px 22px rgba(237,255,33,.5);transform:translateY(-1px)}
+    .btn-ghost{padding:8px 20px;border:1px solid rgba(255,255,255,.12);border-radius:9px;
+      font-size:13px;font-weight:600;color:rgba(255,255,255,.55);background:transparent;transition:all .2s}
+    .btn-ghost:hover{border-color:#EDFF21;color:#fff}
+    .btn-cta-nav{padding:8px 20px;border-radius:9px;font-size:13px;font-weight:700;color:#000;
+      background:#EDFF21;box-shadow:0 4px 14px rgba(237,255,33,.35);transition:all .2s;display:inline-block}
+    .btn-cta-nav:hover{box-shadow:0 6px 22px rgba(237,255,33,.5);transform:translateY(-1px)}
 
-    /* PAGE HEADER */
-    .page-head{padding:88px 64px 64px;position:relative;overflow:hidden}
-    .orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
-    .o1{width:600px;height:600px;background:rgba(75,159,66,.12);top:-120px;right:-80px}
-    .o2{width:350px;height:350px;background:rgba(237,255,33,.06);bottom:-60px;left:100px}
-    .ph-inner{position:relative;z-index:1;max-width:900px;margin:0 auto}
-    .ph-kicker{font-size:11px;font-weight:700;letter-spacing:2px;color:#4B9F42;margin-bottom:16px}
-    .ph-title{font-size:52px;font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:16px}
-    .ph-title span{color:#EDFF21}
-    .ph-sub{font-size:17px;color:rgba(255,255,255,.5);line-height:1.65;max-width:540px}
+    /* MAIN */
+    main{flex:1;display:flex;align-items:center;justify-content:center;
+      padding:80px 24px;position:relative;overflow:hidden;text-align:center}
+    .orb{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none}
+    .o1{width:700px;height:700px;background:rgba(75,159,66,.1);top:-200px;right:-200px}
+    .o2{width:500px;height:500px;background:rgba(237,255,33,.05);bottom:-150px;left:-150px}
 
-    /* WIP BANNER */
-    .wip-banner{display:inline-flex;align-items:center;gap:10px;
+    .wip-box{position:relative;z-index:1;max-width:520px}
+
+    /* ICON */
+    .wip-icon{width:80px;height:80px;border-radius:24px;
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+      display:flex;align-items:center;justify-content:center;font-size:36px;
+      margin:0 auto 32px}
+
+    /* BADGE */
+    .badge{display:inline-flex;align-items:center;gap:8px;
       background:rgba(237,255,33,.08);border:1px solid rgba(237,255,33,.2);
-      border-radius:100px;padding:8px 18px;margin-bottom:32px}
-    .wip-dot{width:8px;height:8px;background:#EDFF21;border-radius:50%;animation:pulse 2s infinite}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-    .wip-text{font-size:12px;font-weight:700;color:#EDFF21;letter-spacing:.5px}
+      border-radius:100px;padding:6px 16px;margin-bottom:28px}
+    .badge-dot{width:7px;height:7px;background:#EDFF21;border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+    .badge-text{font-size:11px;font-weight:700;letter-spacing:1px;color:#EDFF21}
 
-    /* CONTENT */
-    .content{max-width:900px;margin:0 auto;padding:0 64px 80px;
-      display:flex;flex-direction:column;gap:28px;flex:1}
+    .wip-title{font-size:42px;font-weight:900;letter-spacing:-1.5px;line-height:1.08;margin-bottom:16px}
+    .wip-title span{color:#EDFF21}
+    .wip-sub{font-size:16px;color:rgba(255,255,255,.4);line-height:1.65;margin-bottom:40px}
 
-    /* APP CARD */
-    .app-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
-      border-radius:24px;overflow:hidden;transition:border-color .2s}
-    .app-card:hover{border-color:rgba(75,159,66,.3)}
-
-    .app-header{padding:32px 36px 26px;display:flex;align-items:center;gap:22px;
-      border-bottom:1px solid rgba(255,255,255,.08)}
-    .app-icon{width:66px;height:66px;border-radius:18px;flex-shrink:0;
-      display:flex;align-items:center;justify-content:center;font-size:32px}
-    .app-name{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
-    .app-tag{display:inline-flex;align-items:center;gap:6px;
-      padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.5px}
-
-    .app-body{padding:28px 36px 32px}
-    .app-desc{font-size:15px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:28px}
-
-    /* FEATURES GRID */
-    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:10px;margin-bottom:28px}
-    .feature{padding:16px 18px;border-radius:13px;
-      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
-      display:flex;gap:13px;align-items:flex-start;transition:border-color .2s}
-    .feature:hover{border-color:rgba(75,159,66,.25)}
-    .f-icon{font-size:20px;flex-shrink:0;margin-top:1px}
-    .f-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px}
-    .f-desc{font-size:12px;color:rgba(255,255,255,.38);line-height:1.5}
-
-    /* BUTTONS */
-    .app-btns{display:flex;gap:12px;flex-wrap:wrap}
-    .btn-primary{display:inline-flex;align-items:center;gap:8px;
-      padding:13px 26px;border-radius:12px;font-size:14px;font-weight:700;color:#000;
+    .btn-back{display:inline-flex;align-items:center;gap:8px;
+      padding:13px 28px;border-radius:12px;font-size:14px;font-weight:700;color:#000;
       background:#EDFF21;box-shadow:0 6px 20px rgba(237,255,33,.25);transition:all .2s}
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(237,255,33,.35)}
-    .btn-outline{display:inline-flex;align-items:center;gap:8px;
-      padding:13px 24px;border-radius:12px;font-size:14px;font-weight:600;
-      background:transparent;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.6);transition:all .2s}
-    .btn-outline:hover{border-color:rgba(75,159,66,.4);color:#fff}
+    .btn-back:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(237,255,33,.35)}
 
     /* FOOTER */
     footer{background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.08);
@@ -106,15 +70,10 @@
     .foot-links a{font-size:13px;color:rgba(255,255,255,.35);transition:color .2s}
     .foot-links a:hover{color:#fff}
 
-    @media(max-width:700px){
+    @media(max-width:600px){
       nav{padding:0 20px}
-      .nav-links{display:none}
-      .page-head{padding:60px 20px 40px}
-      .ph-title{font-size:36px}
-      .content{padding:0 20px 60px}
-      .app-header{padding:24px 20px;flex-direction:column;align-items:flex-start;gap:14px}
-      .app-body{padding:20px}
-      .features-grid{grid-template-columns:1fr}
+      .nav-links,.nav-actions{display:none}
+      .wip-title{font-size:30px}
       footer{padding:20px;flex-direction:column;align-items:flex-start}
     }
   </style>
@@ -129,92 +88,29 @@
   <div class="nav-links">
     <a href="index.html#fonctionnalites">Fonctionnalités</a>
     <a href="index.html#modules">Modules</a>
-    <a href="applications.html" style="color:#fff">Nos Applications</a>
+    <a href="applications.html" class="active" style="color:#fff">Nos Applications</a>
     <a href="contact.html">Contact</a>
   </div>
   <div class="nav-actions">
-    <a href="contact.html" class="btn-ghost">Demander une démo</a>
-    <a href="contact.html" class="btn-cta">Accès</a>
+    <a href="index.html" class="btn-ghost">← Accueil</a>
+    <a href="contact.html" class="btn-cta-nav">Accès</a>
   </div>
 </nav>
 
-<div class="page-head">
+<main>
   <div class="orb o1"></div>
   <div class="orb o2"></div>
-  <div class="ph-inner">
-    <div class="ph-kicker">NOS APPLICATIONS</div>
-    <div class="wip-banner">
-      <div class="wip-dot"></div>
-      <span class="wip-text">EN COURS DE DÉVELOPPEMENT</span>
+  <div class="wip-box">
+    <div class="wip-icon">🚧</div>
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">EN COURS DE DÉVELOPPEMENT</span>
     </div>
-    <h1 class="ph-title">Une plateforme,<br><span>plusieurs applications</span></h1>
-    <p class="ph-sub">Anatis se décline en applications spécialisées, chacune adaptée aux besoins opérationnels de votre structure — iOS & Android.</p>
+    <h1 class="wip-title">Page en<br><span>construction</span></h1>
+    <p class="wip-sub">Nos applications seront présentées ici très prochainement. En attendant, contactez-nous pour en savoir plus.</p>
+    <a href="index.html" class="btn-back">← Retour à l'accueil</a>
   </div>
-</div>
-
-<div class="content">
-
-  <!-- ── APP : Anatis ── -->
-  <div class="app-card">
-    <div class="app-header">
-      <div class="app-icon" style="background:linear-gradient(135deg,#1A2B6B,#2D4FA8)">🚑</div>
-      <div>
-        <div class="app-name">Anatis</div>
-        <span class="app-tag" style="background:rgba(75,159,66,.12);border:1px solid rgba(75,159,66,.25);color:#6DC963">
-          Secours · Hôpital · EHPAD
-        </span>
-      </div>
-    </div>
-    <div class="app-body">
-      <p class="app-desc">
-        L'application de gestion opérationnelle pour les équipes de secours et de soins d'urgence.
-        Anatis centralise la vérification du matériel, la formation et la communication interne
-        dans une seule application sécurisée, accessible hors connexion.
-      </p>
-
-      <div class="features-grid">
-        <div class="feature">
-          <div class="f-icon">🚑</div>
-          <div><div class="f-title">Véhicules & Sacs</div><div class="f-desc">Vérifications horodatées, historique complet, alertes de non-conformité.</div></div>
-        </div>
-        <div class="feature">
-          <div class="f-icon">🍼</div>
-          <div><div class="f-title">Couveuses</div><div class="f-desc">Contrôle des équipements néonataux et traçabilité des vérifications.</div></div>
-        </div>
-        <div class="feature">
-          <div class="f-icon">🛒</div>
-          <div><div class="f-title">Chariot d'urgence</div><div class="f-desc">Conformité des chariots de réanimation en services hospitaliers.</div></div>
-        </div>
-        <div class="feature">
-          <div class="f-icon">🆘</div>
-          <div><div class="f-title">Box de déchocage</div><div class="f-desc">Contrôle de l'équipement des box hospitaliers de déchocage.</div></div>
-        </div>
-        <div class="feature">
-          <div class="f-icon">💊</div>
-          <div><div class="f-title">Pharmacie & Stock</div><div class="f-desc">Gestion des médicaments, alertes péremption et inventaire.</div></div>
-        </div>
-        <div class="feature">
-          <div class="f-icon">📋</div>
-          <div><div class="f-title">Formation CESU</div><div class="f-desc">Grilles d'évaluation informatisées, export PDF et Excel.</div></div>
-        </div>
-        <div class="feature">
-          <div class="f-icon">🗺️</div>
-          <div><div class="f-title">Cartographie</div><div class="f-desc">Carroyage de secteur d'intervention sur carte interactive.</div></div>
-        </div>
-        <div class="feature">
-          <div class="f-icon">📚</div>
-          <div><div class="f-title">Référentiels</div><div class="f-desc">Bibliothèque de documents PDF accessibles à toute l'équipe.</div></div>
-        </div>
-      </div>
-
-      <div class="app-btns">
-        <a href="contact.html" class="btn-primary">Demander un accès</a>
-        <a href="contact.html" class="btn-outline">Demander une démo →</a>
-      </div>
-    </div>
-  </div>
-
-</div>
+</main>
 
 <footer>
   <p class="foot-copy">© 2026 Anatis — Arnaud Morlet. Tous droits réservés.</p>
@@ -223,7 +119,6 @@
     <a href="contact.html">Contact</a>
     <a href="politique-confidentialite.html">Confidentialité</a>
     <a href="mentions-legales.html">Mentions légales</a>
-    <a href="mailto:support@anatis-app.fr">support@anatis-app.fr</a>
   </div>
 </footer>
 
