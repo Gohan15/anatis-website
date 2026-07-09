@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /politique-confidentialite.html
+Disallow: /mentions-legales.html
+Disallow: /telechargement.html
+Disallow: /portail/
+
+Sitemap: https://anatis-app.fr/sitemap.xml
