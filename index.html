@@ -280,10 +280,10 @@
 <!-- BAND -->
 <div class="band">
   <div class="band-inner">
-    <div class="band-item"><div class="band-num">17</div><div class="band-lbl">Modules opérationnels</div></div>
+    <div class="band-item"><div class="band-num">13</div><div class="band-lbl">Modules opérationnels</div></div>
     <div class="band-item"><div class="band-num">&lt;1s</div><div class="band-lbl">Synchronisation temps réel</div></div>
     <div class="band-item"><div class="band-num">iOS&amp;Android</div><div class="band-lbl">Applications natives</div></div>
-    <div class="band-item"><div class="band-num">100%</div><div class="band-lbl">Multi-structures isolées</div></div>
+    <div class="band-item"><div class="band-num">100%</div><div class="band-lbl">Données isolées par structure</div></div>
   </div>
 </div>
 
@@ -291,61 +291,52 @@
 <div id="fonctionnalites" class="section">
   <div class="kicker">FONCTIONNALITÉS</div>
   <h2 class="sec-title">Tout ce dont votre<br>structure a besoin</h2>
-  <p class="sec-sub">De la checklist quotidienne à la gestion des stocks de médicaments — Anatis couvre l'intégralité de votre activité opérationnelle.</p>
+  <p class="sec-sub">De la checklist quotidienne à la gestion des stocks — Anatis couvre l'intégralité de votre activité opérationnelle.</p>
   <div class="feat-grid">
     <div class="fc wide">
       <div style="position:absolute;top:-30px;right:-30px;width:200px;height:200px;border-radius:50%;background:rgba(75,159,66,.08);filter:blur(40px);pointer-events:none"></div>
       <div class="fc-icon" style="background:rgba(75,159,66,.07);border-color:rgba(75,159,66,.2)">📊</div>
       <div class="fc-title">Dashboard temps réel</div>
-      <div class="fc-desc">Vue unifiée de l'état de tous vos équipements, vecteurs et alertes actives. Synchronisé en moins d'une seconde via Firebase. Votre centre de commandement en poche.</div>
+      <div class="fc-desc">Vue unifiée de l'état de tous vos équipements, vecteurs et alertes actives. Synchronisé en temps réel. Votre centre de commandement en poche.</div>
       <div class="fc-tags">
         <span class="fctag" style="background:rgba(74,222,128,.07);color:#4ADE80;border:1px solid rgba(74,222,128,.15)">● LIVE</span>
-        <span class="fctag" style="background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.2)">Firebase RTDB</span>
-        <span class="fctag" style="background:rgba(96,165,250,.07);color:#60A5FA;border:1px solid rgba(96,165,250,.15)">Multi-structure</span>
       </div>
       <div class="fc-bar" style="background:linear-gradient(90deg,#4B9F42,#6DC963,transparent)"></div>
     </div>
     <div class="fc">
       <div class="fc-icon" style="background:rgba(96,165,250,.07);border-color:rgba(96,165,250,.18)">🚑</div>
       <div class="fc-title">Vecteurs &amp; Matériel</div>
-      <div class="fc-desc">Checklists complètes pour chaque VSAV et VLM. Historique des contrôles, alertes de non-conformité, entretiens.</div>
+      <div class="fc-desc">Checklists complètes pour chaque vecteur. Historique des contrôles, alertes de non-conformité, entretiens.</div>
       <div class="fc-bar" style="background:linear-gradient(90deg,#60A5FA,transparent)"></div>
     </div>
     <div class="fc">
       <div class="fc-icon" style="background:rgba(251,191,36,.07);border-color:rgba(251,191,36,.18)">💊</div>
       <div class="fc-title">Pharmacie &amp; Stock</div>
-      <div class="fc-desc">Suivi des médicaments avec alertes péremption automatiques. Gestion des lots, commandes et inventaire.</div>
+      <div class="fc-desc">Suivi des stocks avec alertes péremption automatiques. Gestion des lots, commandes et inventaire.</div>
       <div class="fc-bar" style="background:linear-gradient(90deg,#FBBF24,transparent)"></div>
     </div>
     <div class="fc">
       <div class="fc-icon" style="background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.18)">🗺️</div>
       <div class="fc-title">Cartographie</div>
-      <div class="fc-desc">Cartographie des ressources et carroyage de secteur interactif. Visualisation en temps réel de vos équipements.</div>
+      <div class="fc-desc">Carroyage de secteur d'intervention sur carte interactive.</div>
       <div class="fc-bar" style="background:linear-gradient(90deg,#34D399,transparent)"></div>
     </div>
     <div class="fc">
       <div class="fc-icon" style="background:rgba(75,159,66,.07);border-color:rgba(75,159,66,.2)">🔧</div>
       <div class="fc-title">Outils médicaux</div>
-      <div class="fc-desc">Calculateurs de doses, fiche bilan numérique (médicalisé / ambulancier), PDF avec QR code de traçabilité.</div>
+      <div class="fc-desc">Calculateurs de doses et outils d'aide à la décision médicale.</div>
       <div class="fc-bar" style="background:linear-gradient(90deg,#67E8F9,transparent)"></div>
     </div>
     <div class="fc">
-      <div class="fc-icon" style="background:rgba(75,159,66,.07);border-color:rgba(75,159,66,.2)">🎓</div>
-      <div class="fc-title">Formation CESU</div>
-      <div class="fc-desc">Grilles d'évaluation numériques pour vos stagiaires. Export PDF, attestations et suivi des sessions.</div>
-      <div class="fc-bar" style="background:linear-gradient(90deg,#4B9F42,transparent)"></div>
-    </div>
-
-    <div class="fc">
-      <div class="fc-icon" style="background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.18)">🆘</div>
-      <div class="fc-title">Box déchocage &amp; PSM</div>
-      <div class="fc-desc">Contrôle des boxes hospitaliers et plans de secours massifs. Conformité et disponibilité garanties.</div>
+      <div class="fc-icon" style="background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.18)">🚨</div>
+      <div class="fc-title">PSM</div>
+      <div class="fc-desc">Contrôle des équipements de plan de secours massif. Conformité et disponibilité garanties.</div>
       <div class="fc-bar" style="background:linear-gradient(90deg,#EF4444,transparent)"></div>
     </div>
     <div class="fc">
       <div class="fc-icon" style="background:rgba(96,165,250,.07);border-color:rgba(96,165,250,.18)">⚙️</div>
       <div class="fc-title">Administration</div>
-      <div class="fc-desc">Gestion des utilisateurs, permissions granulaires par module, configuration multi-structure et notifications push.</div>
+      <div class="fc-desc">Gestion des utilisateurs, permissions granulaires par module et notifications push.</div>
       <div class="fc-bar" style="background:linear-gradient(90deg,#60A5FA,transparent)"></div>
     </div>
   </div>
@@ -368,17 +359,13 @@
       <div class="mod"><img class="mod-icon" src="icons/vecteur.svg" alt="Vecteur"><span class="mod-name">Vecteur</span><div class="mod-bar" style="background:#7B9FFF"></div></div>
       <div class="mod"><img class="mod-icon" src="icons/sac.svg" alt="Sac"><span class="mod-name">Sac</span><div class="mod-bar" style="background:#6DC963"></div></div>
       <div class="mod"><img class="mod-icon" src="icons/couveuse.svg" alt="Couveuse"><span class="mod-name">Couveuse</span><div class="mod-bar" style="background:#6DC963"></div></div>
-      <div class="mod"><img class="mod-icon" src="icons/chariot.svg" alt="Chariot"><span class="mod-name">Chariot</span><div class="mod-bar" style="background:#7B9FFF"></div></div>
-      <div class="mod"><img class="mod-icon" src="icons/dechocage.svg" alt="Déchocage"><span class="mod-name">Déchocage</span><div class="mod-bar" style="background:#EF4444"></div></div>
       <div class="mod"><img class="mod-icon" src="icons/cartographie.svg" alt="Cartographie"><span class="mod-name">Cartographie</span><div class="mod-bar" style="background:#7DD3FC"></div></div>
       <div class="mod"><img class="mod-icon" src="icons/cahier_vert.svg" alt="Cahier Vert"><span class="mod-name">Cahier Vert</span><div class="mod-bar" style="background:#6DC963"></div></div>
       <div class="mod"><img class="mod-icon" src="icons/pharmacie.svg" alt="Pharmacie"><span class="mod-name">Pharmacie</span><div class="mod-bar" style="background:#EDFF21"></div></div>
       <div class="mod"><img class="mod-icon" src="icons/biomed.svg" alt="BioMed"><span class="mod-name">BioMed</span><div class="mod-bar" style="background:#6DC963"></div></div>
       <div class="mod"><img class="mod-icon" src="icons/psm.svg" alt="PSM"><span class="mod-name">PSM</span><div class="mod-bar" style="background:#EF4444"></div></div>
       <div class="mod"><img class="mod-icon" src="icons/association.svg" alt="Association"><span class="mod-name">Association</span><div class="mod-bar" style="background:#7B9FFF"></div></div>
-      <div class="mod"><img class="mod-icon" src="icons/formation.svg" alt="Formation"><span class="mod-name">Formation</span><div class="mod-bar" style="background:#BEF264"></div></div>
       <div class="mod"><img class="mod-icon" src="icons/outils.svg" alt="Outils"><span class="mod-name">Outils</span><div class="mod-bar" style="background:#94A3B8"></div></div>
-      <div class="mod"><img class="mod-icon" src="icons/cesu.svg" alt="CESU"><span class="mod-name">CESU</span><div class="mod-bar" style="background:#7DD3FC"></div></div>
       <div class="mod"><img class="mod-icon" src="icons/stock.svg" alt="Stock"><span class="mod-name">Stock</span><div class="mod-bar" style="background:#EDFF21"></div></div>
       <div class="mod" style="background:rgba(255,255,255,.03);border-style:dashed;border-color:rgba(255,255,255,.1)">
         <span style="display:block;font-size:18px;text-align:center;opacity:.25;margin-bottom:8px">+</span>
@@ -427,15 +414,15 @@
     <div class="sec-card">
       <div class="sec-ico" style="background:rgba(75,159,66,.07);border-color:rgba(75,159,66,.18)">🔒</div>
       <div>
-        <div class="sec-title">Isolation multi-structure</div>
+        <div class="sec-title">Isolation des données</div>
         <div class="sec-desc">Chaque structure dispose de ses propres données totalement isolées. Aucune donnée ne circule entre organisations.</div>
       </div>
     </div>
     <div class="sec-card">
       <div class="sec-ico" style="background:rgba(96,165,250,.07);border-color:rgba(96,165,250,.15)">🛡️</div>
       <div>
-        <div class="sec-title">Firebase Security Rules</div>
-        <div class="sec-desc">Règles d'accès fine-grained au niveau de chaque document. Authentification obligatoire sur toutes les routes.</div>
+        <div class="sec-title">Règles de sécurité</div>
+        <div class="sec-desc">Contrôle d'accès granulaire au niveau de chaque document. Authentification obligatoire sur toutes les routes.</div>
       </div>
     </div>
     <div class="sec-card">
@@ -515,7 +502,6 @@
       <p>© 2026 Arnaud Morlet — Anatis. Tous droits réservés. · Ce site n'utilise aucun cookie de suivi.</p>
       <div class="foot-chips">
         <div class="fchip">Flutter</div>
-        <div class="fchip">Firebase</div>
         <div class="fchip">iOS &amp; Android</div>
         <div class="fchip">RGPD</div>
       </div>
