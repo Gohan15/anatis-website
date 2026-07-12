@@ -89,13 +89,28 @@
     .dc-val a:hover{opacity:1}
 
     /* FOOTER */
-    footer{background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.08);
-      padding:24px 64px;display:flex;justify-content:space-between;
-      align-items:center;flex-wrap:wrap;gap:14px}
-    .foot-copy{font-size:12px;color:rgba(255,255,255,.25)}
-    .foot-links{display:flex;gap:24px;flex-wrap:wrap}
-    .foot-links a{font-size:13px;color:rgba(255,255,255,.35);transition:color .2s}
-    .foot-links a:hover{color:#fff}
+    footer{background:var(--surface);border-top:1px solid rgba(255,255,255,.08);padding:56px 64px 28px}
+    .foot-inner{max-width:1100px;margin:0 auto}
+    .foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px}
+    .foot-brand .fl{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+    .foot-brand .fl img{width:30px;height:30px;border-radius:8px}
+    .foot-brand p{font-size:13px;color:rgba(255,255,255,.26);line-height:1.7;max-width:260px}
+    .foot-email{margin-top:16px;font-size:12px;color:rgba(255,255,255,.22)}
+    .foot-email a{color:rgba(237,255,33,.55);transition:color .2s}
+    .foot-email a:hover{color:#EDFF21}
+    .foot-social{display:flex;gap:10px;margin-top:20px}
+    .foot-social a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;
+      border-radius:8px;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7);transition:all .2s}
+    .foot-social a:hover{border-color:#EDFF21;color:#EDFF21;background:rgba(237,255,33,.1)}
+    .foot-col h4{font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.2);margin-bottom:16px}
+    .foot-col a{display:block;font-size:13px;color:rgba(255,255,255,.36);margin-bottom:10px;transition:color .2s}
+    .foot-col a:hover{color:#fff}
+    .foot-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .foot-bottom p{font-size:12px;color:rgba(255,255,255,.16)}
+    .foot-chips{display:flex;gap:7px;flex-wrap:wrap}
+    .fchip{padding:3px 11px;border:1px solid rgba(255,255,255,.08);border-radius:100px;
+      font-size:10px;font-weight:600;color:rgba(255,255,255,.18)}
 
     @media(max-width:600px){
       nav{padding:0 20px}
@@ -264,12 +279,54 @@
 </div>
 
 <footer>
-  <p class="foot-copy">© 2026 Anatis — Arnaud Morlet. Tous droits réservés.</p>
-  <div class="foot-links">
-    <a href="index.html">Accueil</a>
-    <a href="applications.html">Applications</a>
-    <a href="politique-confidentialite.html">Confidentialité</a>
-    <a href="mentions-legales.html">Mentions légales</a>
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="fl">
+          <img src="logo_1.png" alt="Anatis" style="height:48px;width:auto;border-radius:12px;background:rgba(255,255,255,.9);padding:5px 7px" />
+          <span style="font-size:19px;font-weight:800;color:#EDFF21">Anatis</span>
+        </div>
+        <p>Gestion opérationnelle pour ambulances, SMUR, SAMU, pompiers, associations de sécurité civile, hôpitaux et EHPAD. Développée par Arnaud Morlet.</p>
+        <div class="foot-email">📧 <a href="mailto:support@anatis-app.fr">support@anatis-app.fr</a></div>
+        <div class="foot-social">
+          <a href="https://fr.linkedin.com/in/anatis-app-04a643421" target="_blank" rel="noopener" title="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://www.facebook.com/share/1EKDtPpaCP/?mibextid=wwXIfr" target="_blank" rel="noopener" title="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/anatis_app" target="_blank" rel="noopener" title="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>PRODUIT</h4>
+        <a href="index.html#fonctionnalites">Fonctionnalités</a>
+        <a href="index.html#modules">Modules</a>
+        <a href="applications.html">Nos Applications</a>
+        <a href="telechargement.html">Téléchargement</a>
+      </div>
+      <div class="foot-col">
+        <h4>RESSOURCES</h4>
+        <a href="https://anatis.web.app" target="_blank" rel="noopener">Portail web</a>
+        <a href="contact.html">Support</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>LÉGAL</h4>
+        <a href="politique-confidentialite.html">Politique de confidentialité</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Arnaud Morlet — Anatis. Tous droits réservés. · Ce site n'utilise aucun cookie de suivi.</p>
+      <div class="foot-chips">
+        <div class="fchip">Flutter</div>
+        <div class="fchip">iOS &amp; Android</div>
+        <div class="fchip">RGPD</div>
+      </div>
+    </div>
   </div>
 </footer>
 
