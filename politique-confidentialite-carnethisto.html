@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <title>Politique de confidentialité — CarnetHisto</title>
+  <link rel="icon" href="logo_1.png" />
+  <link rel="apple-touch-icon" href="logo_1.png" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#1A2B6B;--surface:#1E3275;--card:rgba(255,255,255,0.07);--border:rgba(255,255,255,0.12);
+      --primary:#EDFF21;--secondary:#4B9F42;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:#fff;min-height:100vh;display:flex;flex-direction:column}
+    a{text-decoration:none;color:inherit}
+
+    nav{height:64px;display:flex;align-items:center;justify-content:space-between;
+      padding:0 40px;border-bottom:1px solid var(--border);
+      background:rgba(26,43,107,.9);backdrop-filter:blur(20px);
+      position:sticky;top:0;z-index:100}
+    .nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px}
+    .nav-logo img{width:30px;height:30px;border-radius:8px}
+    .nav-back{display:flex;align-items:center;gap:6px;font-size:14px;
+      color:rgba(255,255,255,.6);transition:color .2s}
+    .nav-back:hover{color:#fff}
+    .nav-back svg{width:16px;height:16px}
+
+    .hero{padding:60px 40px 50px;text-align:center;
+      background:linear-gradient(180deg,rgba(30,50,117,.6) 0%,transparent 100%);
+      border-bottom:1px solid var(--border)}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;
+      padding:5px 16px;border-radius:100px;
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);
+      font-size:11px;font-weight:700;letter-spacing:1.2px;color:rgba(255,255,255,.7)}
+    .hero h1{font-size:36px;font-weight:900;letter-spacing:-1px;margin-bottom:10px}
+    .hero p{font-size:14px;color:rgba(255,255,255,.4)}
+
+    main{flex:1;max-width:800px;width:100%;margin:0 auto;padding:50px 40px 80px}
+    .section{margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--border)}
+    .section:last-child{border-bottom:none;margin-bottom:0}
+    .section-num{font-size:10px;font-weight:700;letter-spacing:1.5px;
+      color:var(--secondary);margin-bottom:8px}
+    .section h2{font-size:18px;font-weight:700;margin-bottom:14px;color:#fff}
+    .section p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:10px}
+    .section p:last-child{margin-bottom:0}
+    .section ul{margin:0 0 10px 18px}
+    .section li{font-size:14px;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:4px}
+    .highlight{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;
+      background:rgba(75,159,66,.12);border:1px solid rgba(75,159,66,.3);
+      border-radius:10px;font-size:13px;color:rgba(255,255,255,.7);margin-bottom:16px}
+
+    footer{background:var(--surface);border-top:1px solid var(--border);padding:24px 40px;
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    footer p{font-size:12px;color:rgba(255,255,255,.25)}
+    .foot-links{display:flex;gap:20px}
+    .foot-links a{font-size:13px;color:rgba(255,255,255,.35);transition:color .2s}
+    .foot-links a:hover{color:#fff}
+
+    @media(max-width:600px){
+      nav{padding:0 20px}
+      .hero{padding:40px 20px 36px}
+      .hero h1{font-size:26px}
+      main{padding:36px 20px 60px}
+      footer{padding:24px 20px;flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo_1.png" alt="Anatis" />
+    <span>Anatis</span>
+  </a>
+  <a href="javascript:history.back()" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Retour
+  </a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">CONFIDENTIALITÉ</div>
+  <h1>Politique de confidentialité</h1>
+  <p>CarnetHisto — Dernière mise à jour : juillet 2026</p>
+</div>
+
+<main>
+
+  <div class="section">
+    <div class="section-num">01</div>
+    <h2>Résumé</h2>
+    <div class="highlight">
+      ✅ Par défaut, CarnetHisto fonctionne 100% en local : aucune donnée n'est envoyée à un serveur.
+    </div>
+    <p>CarnetHisto est un carnet d'entretien multi-véhicules. Toutes les données (véhicules, entretiens, photos, documents) sont stockées uniquement sur votre appareil, sans compte ni connexion requise.</p>
+    <p>Un abonnement optionnel de sauvegarde cloud / multi-appareils existe. Il n'active un compte et un envoi de données vers nos serveurs (Google Firebase) que si vous y souscrivez explicitement.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">02</div>
+    <h2>Données collectées</h2>
+    <p><strong>Sans abonnement :</strong> aucune donnée personnelle n'est collectée. L'application ne nécessite ni compte, ni inscription, ni connexion internet.</p>
+    <p><strong>Avec l'abonnement de sauvegarde cloud :</strong></p>
+    <ul>
+      <li>Adresse email et mot de passe (création de compte, via Firebase Authentication)</li>
+      <li>Données de votre carnet d'entretien : véhicules, interventions, kilométrage/heures, dates — synchronisées pour permettre l'accès multi-appareils</li>
+    </ul>
+    <p>Les photos de véhicules et les documents joints (carte grise, factures) restent, dans tous les cas, stockés uniquement sur votre appareil et ne sont jamais envoyés à nos serveurs.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">03</div>
+    <h2>Utilisation des données</h2>
+    <p>Les données transmises dans le cadre de l'abonnement cloud servent exclusivement à fournir le service de synchronisation et de sauvegarde entre vos appareils. Elles ne sont ni vendues, ni partagées avec des tiers à des fins commerciales ou publicitaires.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">04</div>
+    <h2>Hébergement et sous-traitants</h2>
+    <p>Les données de l'abonnement cloud sont hébergées par <strong>Google Firebase</strong> (Google Cloud Platform). Les achats (abonnement ou achat unique) sont traités directement par Apple (App Store) ou Google (Play Store) : CarnetHisto n'a accès à aucune donnée de paiement (numéro de carte, etc.).</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">05</div>
+    <h2>Publicités et traceurs</h2>
+    <p>CarnetHisto ne contient aucune publicité, aucun traceur analytique et aucun SDK tiers de collecte de données à des fins publicitaires.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">06</div>
+    <h2>Sécurité</h2>
+    <p>Les connexions avec nos serveurs (pour les utilisateurs abonnés) sont chiffrées (TLS/HTTPS). L'authentification repose sur Firebase Authentication, un service standard de Google.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">07</div>
+    <h2>Droits des utilisateurs</h2>
+    <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données.</p>
+    <p>Pour les données locales (utilisateurs non abonnés), la désinstallation de l'application supprime définitivement toutes vos données.</p>
+    <p>Pour les données de l'abonnement cloud, vous pouvez demander la suppression de votre compte et de vos données à tout moment en nous contactant à l'adresse ci-dessous.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">08</div>
+    <h2>Contact</h2>
+    <p>Pour toute question relative à cette politique de confidentialité ou pour exercer vos droits :</p>
+    <p><strong>Email :</strong> <a href="mailto:support@anatis-app.fr" style="color:#EDFF21;opacity:.8">support@anatis-app.fr</a></p>
+    <p><strong>Développeur :</strong> Arnaud Morlet</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 Arnaud Morlet. Tous droits réservés.</p>
+  <div class="foot-links">
+    <a href="index.html">Accueil</a>
+    <a href="contact.html">Contact</a>
+    <a href="mentions-legales.html">Mentions légales</a>
+  </div>
+</footer>
+
+</body>
+</html>
